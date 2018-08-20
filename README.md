@@ -1,6 +1,14 @@
 # mysql-master-slave-replication
 Docker setup for MySQL Master Slave replication 
 
+#### Clone the repository to Ansible server using following command ####
+```
+git clone https://github.com/SatishNaidi/mysql-master-slave.git
+```
+#### Change the working directory ####
+```
+cd mysql-master-slave
+```
 ### Edit the hosts file with list of servers ###
 ```
 [mysql]
