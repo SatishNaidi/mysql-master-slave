@@ -2,6 +2,12 @@
 Docker setup for MySQL Master Slave replication 
 
 ### Edit the hosts file with list of servers ###
+```
+[mysql]
+server1
+server2
+server3
+```
 
 ###  Change the ansible.cfg file to appropriate private key file and remote user ###
 
