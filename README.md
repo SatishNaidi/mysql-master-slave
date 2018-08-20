@@ -1,2 +1,3 @@
-# mysql-master-slave
-For MySQL Master Slave Replcation
+# mysql-master-slave-replication
+Docker setup for MySQL Master Slave replication 
+# mysql-master-slave-replication
