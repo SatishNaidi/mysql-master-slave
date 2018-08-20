@@ -23,3 +23,23 @@ remote_user=ec2-user
 ```
 ansible-playbook install_docker.yml  -vvvv
 ```
+## To check the replication status ## 
+
+```
+docker exec mysql_master sh -c "export MYSQL_PWD=MyPassword12; mysql -u root mydb -e 'SHOW MASTER STATUS\G'"
+```
+```
+docker exec mysql_slave sh -c "export MYSQL_PWD=MyPWD123; mysql -u root mydb -e 'SHOW SLAVE STATUS\G'"
+```
+
+### Create a table in Master and Insert sample data ###
+
+```
+docker exec mysql_master sh -c "export MYSQL_PWD=MyPassword12; mysql -u root mydb -e 'create table table1(num int); insert into table values (12), (13)'"
+```
+
+### Check the replication on Slave ###
+
+```
+docker exec mysql_slave sh -c "export MYSQL_PWD=MyPWD123; mysql -u root mydb -e 'select * from table1 \G'"
+```
