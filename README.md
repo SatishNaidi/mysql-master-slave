@@ -51,3 +51,6 @@ docker exec mysql_master sh -c "export MYSQL_PWD=MyPassword12; mysql -u root myd
 ```
 docker exec mysql_slave sh -c "export MYSQL_PWD=MyPWD123; mysql -u root mydb -e 'select * from table1 \G'"
 ```
+
+#### Additional help in cleaning up dockers ####
+https://zaiste.net/removing_docker_containers/
