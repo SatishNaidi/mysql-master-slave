@@ -29,7 +29,7 @@ remote_user=ec2-user
 
 ## To Run the Playbook ##
 ```
-ansible-playbook install_docker.yml  -vvvv
+ansible-playbook install_mysql_cluster.yml  -vvvv
 ```
 ## To check the replication status ## 
 
