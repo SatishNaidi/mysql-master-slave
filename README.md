@@ -57,11 +57,9 @@ https://zaiste.net/removing_docker_containers
 
 ### Command Line way of installing docker-compose ###
 
-curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > ./docker-compose
-
-mv ./docker-compose /usr/bin/docker-compose
-
-chmod +x /usr/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > ./docker-compose  
+mv ./docker-compose /usr/bin/docker-compose  
+chmod +x /usr/bin/docker-compose  
 
 
 
