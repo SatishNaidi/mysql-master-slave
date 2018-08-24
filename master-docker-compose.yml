@@ -9,7 +9,7 @@ services:
     ports:
       - 3002:3306
     volumes:
-      - ./master/conf/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./master/conf/mysql.cnf:/etc/my.cnf
       - ./master/data:/var/lib/mysql
 
 
