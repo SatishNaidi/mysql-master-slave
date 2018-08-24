@@ -1,0 +1,149 @@
+---
+- name: Create a new Demo EC2 instance
+  hosts: localhost
+  gather_facts: False
+
+  vars:
+      region: us-east-1
+      instance_type: t2.micro
+      ami: ami-0ff8a91507f77f867 # Ubuntu 16.04 LTS
+      keypair: Mumbai # pem file name
+      master_tag: Master
+      slave_tag: Slave
+      number_machines: 1
+  
+  tasks:
+    - name: Create an ec2 instance
+      ec2:
+         key_name: "{{ keypair }}"
+         group: default  # security group name
+         instance_type: "{{ instance_type}}"
+         image: "{{ ami }}"
+         wait: true
+         region: "{{ region }}"
+         exact_count: "{{ number_machines }}"
+         #count: 1  # default
+         count_tag:
+            Name: "{{ item }}"
+         instance_tags:
+            Name: "{{ item }}"
+         vpc_subnet_id: subnet-0f4c7c58d2bd31d55
+      register: ec2_+"{{ item }}"
+      # with_items: "{{ master_tag }}"
+      with_items: 
+        - "{{ master_tag }}"
+        - "{{ slave_tag }}"
+    
+
+    - name: Gather Master EC2 Details
+      ec2_instance_facts:
+        ec2_region: "{{ region }}"
+        filters:
+          instance-state-name: running
+          "tag:Name": "{{ master_tag }}"
+      register: master_details
+
+    - debug:
+        var: master_details    
+
+    - name: Gather Slave EC2 Details
+      ec2_instance_facts:
+        ec2_region: "{{ region }}"
+        filters:
+          instance-state-name: running
+          "tag:Name": "{{ slave_tag }}"
+      register: slave_details
+    
+    - name: Add new instance to Master host group
+      add_host:
+        hostname: "{{ item.public_dns_name }}"
+        groupname: Master
+      with_items: "{{ master_details.instances }}"
+
+    - name: Add new instance to Slave host group
+      add_host:
+        hostname: "{{ item.public_dns_name }}"
+        groupname: Slave
+      with_items: "{{ slave_details.instances }}"
+    
+    - name: Wait for SSH to come up on Master
+      delegate_to: "{{ item.public_dns_name }}"
+      wait_for_connection:
+        delay: 10
+        timeout: 320
+      with_items: "{{ master_details.instances }}"
+    
+    - name: Wait for SSH to come up on Slave
+      delegate_to: "{{ item.public_dns_name }}"
+      wait_for_connection:
+        delay: 10
+        timeout: 320
+      with_items: "{{ slave_details.instances }}"
+    
+
+- name: Prepare hosts for MySql Master slave replication
+  hosts: all
+  gather_facts: True
+  become: True
+  tasks:
+    - name: Install Docker
+      yum:
+        name: docker
+        state: present
+        update_cache: yes
+    - name: Install GIT
+      yum:
+        name: git
+        state: present
+  
+    - name: Run Docker
+      service:
+        name: docker
+        state: started
+    
+    - name: Install Docker Compose
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/1.20.0/docker-compose-Linux-x86_64"
+        dest: "/usr/local/bin/docker-compose"
+        force: true
+        owner: "root"
+        group: "root"
+        mode: "0755"
+
+    - name: Clone the git repository
+      git:
+        repo: 'https://github.com/SatishNaidi/mysql-master-slave.git'
+        dest: /opt/mysql-replication
+      register: response
+    
+    - name:  Git Run Response
+      debug:
+        var: response  
+
+- name: Configure Master instance
+  hosts: Master
+  gather_facts: True
+  become: True
+  tasks:
+    - name: Run Docker Compose
+      shell: "/usr/local/bin/docker-compose -f master-docker-compose.yml up -d"
+      args:
+        chdir: /opt/mysql-replication
+
+- name: Configure Slave My SQL
+  hosts: Slave
+  gather_facts: True
+  become: True
+  tasks:
+    - name: Run Docker Compose
+      shell: "/usr/local/bin/docker-compose -f slave-docker-compose.yml up -d"
+      args:
+        chdir: /opt/mysql-replication
+    
+    # - name: Setup MySql Master Slave Replication
+    #   script: "./create_cluster.sh"
+    #   args:
+    #     executable: /bin/bash
+    #     chdir: /opt/mysql-replication
+       
+
