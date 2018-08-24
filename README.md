@@ -56,16 +56,16 @@ docker exec mysql_slave sh -c "export MYSQL_PWD=MyPWD123; mysql -u root mydb -e 
 https://zaiste.net/removing_docker_containers
 
 ### Command Line way of installing docker-compose ###
-
-url='https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m`'
+```
+url=https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m`
 
 curl -L ${url} > ./docker-compose  
 mv ./docker-compose /usr/bin/docker-compose  
 chmod +x /usr/bin/docker-compose  
+```
 
-
-
+```
 docker-compose -p slave -f slave-docker-compose.yml up -d  
 docker-compose -p master -f master-docker-compose.yml up -d  
 docker-compose -p master -f master-docker-compose.yml restart  
-
+```
