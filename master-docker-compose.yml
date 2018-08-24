@@ -5,7 +5,8 @@ services:
     env_file:
       - ./master/mysql_master.env
     container_name: "mysql_master"
-    restart: "no"
+    #restart: "no"
+    restart: "always"
     ports:
       - 3002:3306
     volumes:

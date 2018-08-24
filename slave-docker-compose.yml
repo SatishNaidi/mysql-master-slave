@@ -7,7 +7,7 @@ services:
     container_name: "mysql_slave"
     restart: "no"
     ports:
-      - 3003:3307
+      - 3003:3306
     volumes:
       - ./slave/conf/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
       - ./slave/data:/var/lib/mysql

@@ -62,3 +62,10 @@ curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compos
 mv ./docker-compose /usr/bin/docker-compose
 
 chmod +x /usr/bin/docker-compose
+
+
+
+docker-compose -p slave -f slave-docker-compose.yml up -d
+docker-compose -p master -f master-docker-compose.yml up -d
+docker-compose -p master -f master-docker-compose.yml restart
+
