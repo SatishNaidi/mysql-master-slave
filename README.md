@@ -33,8 +33,8 @@ This repository will help in creating master slave setup between two containers 
 - `mysql -h ${slave_hostname} -P 3003 -uroot -pf00bar` #to connect to Slave
 
 ### To Verify Replication Status ###
-- mysql -h ${master_hostname} -P 3002 -uroot -pf00bar -e 'SHOW MASTER STATUS\G'
-- mysql -h ${slave_hostname} -P 3003 -uroot -pf00bar -e 'SHOW SLAVE STATUS\G'
+- `mysql -h ${master_hostname} -P 3002 -uroot -pf00bar -e 'SHOW MASTER STATUS\G'`
+- `mysql -h ${slave_hostname} -P 3003 -uroot -pf00bar -e 'SHOW SLAVE STATUS\G'`
 
 ### Create a table in Master and Insert sample data ###
 ```
