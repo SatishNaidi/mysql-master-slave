@@ -2,7 +2,7 @@
 This repository will help in creating master slave setup between two containers running on two different hosts
 
 #### Prepare ANSIBLE Work Bench ####
-1. Create an EC2 instance with public log in access
+1. Create an EC2 instance with public login enables
 2. Set up the AWS Configuration
     1.  Run `aws configure` and provide "__AWS Access Key ID__" "__AWS Secret Access Key__"  
     2.  verify configuration by running `aws sts get-caller-identity`. Will provide the IAM user information
