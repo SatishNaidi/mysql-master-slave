@@ -29,8 +29,8 @@ This repository will help in creating master slave setup between two containers 
 - `master_hostname=<Master's hostname>`
 - `slave_hostname=<Slave's hostname>`
 - `db_name=mydb`
-- `mysql -h ${master_hostname} -P 3002 -uroot -pf00bar` to connect to Master
-- `mysql -h ${slave_hostname} -P 3003 -uroot -pf00bar` to connect to Slave
+- `mysql -h ${master_hostname} -P 3002 -uroot -pf00bar` #to connect to Master
+- `mysql -h ${slave_hostname} -P 3003 -uroot -pf00bar` #to connect to Slave
 
 ### To Verify Replication Status ###
 - mysql -h ${master_hostname} -P 3002 -uroot -pf00bar -e 'SHOW MASTER STATUS\G'
