@@ -198,11 +198,12 @@
     #     chdir: /opt/mysql-replication
 
     - name: Setup MySql Master Slave Replication
-      script: "./create_cluster.sh root f00bar {{ slave_node }} {{master_node}}"
+      script: "./create_cluster.sh root f00bar {{master_node}} {{ slave_node }}"
       args:
         executable: /bin/bash
         chdir: /opt/mysql-replication
       register: output
     - debug:
         var: output
+
        
