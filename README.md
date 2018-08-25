@@ -4,7 +4,14 @@ This repository will help in creating master slave setup between two containers 
 #### Prepare ANSIBLE Work Bench ####
 1. Create an EC2 instance with public log in access
 2. Set up the AWS Configuration
-  ⋅⋅1. Run `aws configure` and provide "AWS Access Key ID" "AWS Secret Access Key"
+    1.  Run `aws configure` and provide "__AWS Access Key ID__" "__AWS Secret Access Key__"  
+    2.  verify configuration by running `aws sts get-caller-identity`. Will provide the IAM user information
+    3. Install boto3 using `pip install boto3`, Needed for ec2 management
+3. Install Ansible using `pip install ansible`
+4. Verify Ansible installation using `ansible --version`
+5. Install GIT using `yum install git`
+6. Clone repository using `git clone https://github.com/SatishNaidi/mysql-master-slave.git`
+  
 
 #### Clone the repository to Ansible server using following command ####
 ```
