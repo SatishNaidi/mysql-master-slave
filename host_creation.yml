@@ -10,7 +10,6 @@
       keypair: Mumbai # pem file name
       master_tag: Master
       slave_tag: Slave
-      number_machines: 1
   
   tasks:
     - name: Create an ec2 instance
@@ -21,7 +20,7 @@
          image: "{{ ami }}"
          wait: true
          region: "{{ region }}"
-         exact_count: "{{ number_machines }}"
+         exact_count: 1
          #count: 1  # default
          count_tag:
             Name: "{{ item }}"
