@@ -39,7 +39,7 @@ This repository will help in creating master slave setup between two containers 
 ### Create a table in Master and Insert sample data ###
 ```
 mysql -h ${master_hostname} -P 3002 -uroot -pf00bar ${db_name} -e 'create table table1(num int);'
-mysql -h ${master_hostname} -P 3002 -uroot -pf00bar ${db_name} -e 'insert into table values (12), (13)'
+mysql -h ${master_hostname} -P 3002 -uroot -pf00bar ${db_name} -e 'insert into table1 values (12), (13)'
 ```
 ### Check the replication on Slave ###
 ```
