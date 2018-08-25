@@ -1,7 +1,7 @@
-# MySQL Master Slave Docker replication on two ec2 machines
+# MySQL Master Slave Docker replication on two ec2 Instances
 This repository will help in creating master slave setup between two containers running on two different hosts
 
-#### Prepare ANSIBLE Work Bench ####
+#### Prepare Ansible Work Bench ####
 1. Create an EC2 instance with public login enables
 2. Set up the AWS Configuration
     1.  Run `aws configure` and provide "__AWS Access Key ID__" "__AWS Secret Access Key__"  
