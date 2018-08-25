@@ -43,5 +43,5 @@ mysql -h ${master_hostname} -P 3002 -uroot -pf00bar ${db_name} -e 'insert into t
 ```
 ### Check the replication on Slave ###
 ```
-mysql -h ${slave_hostname} -P 3003 -uroot -pf00bar -e 'select * from table1 \G'
+mysql -h ${slave_hostname} -P 3003 -uroot -pf00bar ${db_name} -e 'select * from table1 \G'
 ```
