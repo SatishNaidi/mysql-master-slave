@@ -1,5 +1,10 @@
-# mysql-master-slave-replication
-Docker setup for MySQL Master Slave replication 
+# MySQL Master Slave Docker replication on two ec2 machines
+This repository will help in creating master slave setup between two containers running on two different hosts
+
+#### Prepare ANSIBLE Work Bench ####
+1. Create an EC2 instance with public log in access
+2. Set up the AWS Configuration
+  ⋅⋅1. Run `aws configure` and provide "AWS Access Key ID" "AWS Secret Access Key"
 
 #### Clone the repository to Ansible server using following command ####
 ```
