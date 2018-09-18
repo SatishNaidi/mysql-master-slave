@@ -13,7 +13,7 @@ This repository will help in creating master slave setup between two containers 
 6. Clone repository using `git clone https://github.com/SatishNaidi/mysql-master-slave.git`
   
 #### Run Ansible Playbook ####
-- Edit [ansible.cfg](https://github.com/SatishNaidi/mysql-master-slave/blob/master/ansible) with appropriate location of PEM to gain the log in access
+- Edit [ansible.cfg](https://github.com/SatishNaidi/mysql-master-slave/blob/master/ansible.cfg) with appropriate location of PEM to gain the log in access
     - private_key_file=<AbsolutePath>/<FileName>.pem  
     - Example: private_key_file=/Users/naisa13/mykeys/Mumbai.pem
 - `cd mysql-master-slave`  
