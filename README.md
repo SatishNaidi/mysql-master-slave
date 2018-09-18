@@ -15,7 +15,7 @@ This repository will help in creating master slave setup between two containers 
 #### Run Ansible Playbook ####
 - Edit [ansible.cfg](https://github.com/SatishNaidi/mysql-master-slave/blob/master/ansible.cfg) with appropriate location of PEM to gain the log in access
     - private_key_file=<AbsolutePath>/<FileName>.pem  
-    - Example: private_key_file=/Users/naisa13/mykeys/Mumbai.pem
+    - Example: private_key_file=/Users/<username>/mykeys/Mumbai.pem
 - `cd mysql-master-slave`  
 - Run play book as `ansible-playbook host_creation.yml`
 
